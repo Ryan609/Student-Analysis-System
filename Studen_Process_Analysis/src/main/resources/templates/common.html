@@ -1,0 +1,29 @@
+<footer th:fragment="bottombar">
+	Copyright &copy; 2022 Student Progress Analysis by Team.12
+</footer>
+
+<div class="topbar" th:fragment="topbar">
+	<a>Welcome back, </a><a id="username" th:text="${username}"></a><a>!</a>
+	<a id="logoutBtn">Sign Out</a>
+</div>
+
+<div class="menuBoard" th:fragment="menuBoard">
+	<div class="left-menu">
+		<div id="menu-home" th:class="${page=='home'} ? 'selected' : 'unselected'">Home</div>
+		
+		<div id="menu-course-management" th:class="${page=='course'} ? 'selected' : 'unselected'">Course Management</div>
+		<div id="menu-course-management-enrolled" th:class="${page=='course' && subpage=='enrolled' ? 'selected' : 'unselected'}">Course Enrolled</div>
+		<div id="menu-course-management-result" th:class="${page=='course' && subpage=='result' ? 'selected' : 'unselected'}">Course Results</div>
+		
+		<div id="menu-student-management" th:class="${page=='student'} ? 'selected' : 'unselected'">Student Management</div>
+		<div id="menu-student-management-academic" th:class="${page=='student' && subpage=='academic'} ? 'selected' : 'unselected'">Academic Results</div>
+		<div id="menu-student-management-honorsoffers" th:class="${page=='student' && subpage=='honorsoffers'} ? 'selected' : 'unselected'">Honors offers</div>
+		<div id="menu-student-management-riskstudent" th:class="${page=='student' && subpage=='riskstudent'} ? 'selected' : 'unselected'">At-Risk Students</div>
+	</div>
+	<div class="inner" th:switch="${page}">
+		<div th:case="home" th:insert="home :: homePage"></div>
+		<div th:case="course" th:insert="course :: coursePage"></div>
+		<div th:case="student" th:insert="student :: studentPage"></div>
+		<div th:case="detail" th:insert="detail :: detailPage"></div>
+	</div>
+</div>

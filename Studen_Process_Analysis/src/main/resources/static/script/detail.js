@@ -1,0 +1,9 @@
+$("#WithOrWithoutF").click(function(){
+	if($("#WithOrWithoutF").get(0).checked){
+		$("#GPAWithF").show();
+		$("#GPAWithoutF").hide();
+	}else{
+		$("#GPAWithoutF").show();
+		$("#GPAWithF").hide();
+	}
+})

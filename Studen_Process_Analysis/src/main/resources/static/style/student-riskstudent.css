@@ -1,0 +1,49 @@
+#searchBox{
+	position: relative;
+}
+
+#searchInput{
+	height: 30px;
+	width: 300px;
+	box-sizing: border-box;
+	padding-left: 8px;
+	padding-right: 8px;
+	font-size: 12px;
+}
+
+#keywordTips{
+	position: absolute;
+	display: none;
+	height: 110px;
+	width: 300px;
+	top: 30px;
+	font-size: 12px;
+	box-sizing: border-box;
+	overflow-y: auto;
+	border: 1px #245fc5 solid;
+	background-color: #FFFFFF;
+}
+
+#timeSelect{
+	height: 30px;
+	box-sizing: border-box;
+	display: none;
+}
+
+ul{
+	margin: 0;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+li{
+	width: 100%;
+	height: 30px;
+	font-size: 12px;
+	line-height: 30px;
+	list-style: none;
+}
+
+li:hover{
+	background-color: #f5f5f6;
+}

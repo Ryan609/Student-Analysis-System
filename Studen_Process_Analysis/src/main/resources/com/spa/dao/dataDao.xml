@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spa.dao.dataDao">
+    <update id="deleteAllData">
+        truncate grade;
+    </update>
+
+    <insert id="insertGradeDataByList" parameterType="List" useGeneratedKeys="false">
+        insert into grade(student_code, course_code, course_name, units, ismaster, grade, year, semester, honors_count) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.student_code}, #{item.course_code}, #{item.course_name}, #{item.units}, #{item.ismaster}, #{item.grade}, #{item.year}, #{item.semester}, #{item.honors_count})
+        </foreach>
+    </insert>
+
+    <select id="selectCourseByName" parameterType="String" resultType="com.spa.model.CourseOnlyName">
+        select course_name from grade where course_name like #{keyword} or course_code like #{keyword} group by course_name
+    </select>
+
+    <select id="selectYearAndSemesterByCourseName" parameterType="String" resultType="com.spa.model.TermList">
+        select year,semester from grade where course_name = #{course_name} group by year, semester order by year desc, semester desc;
+    </select>
+
+    <select id="getEnrolledData" resultType="com.spa.model.Grade">
+        select * from grade where course_name = #{course_name} and year = #{year} and semester = #{semester}
+    </select>
+
+    <select id="confirmStudentCodeIfExists" parameterType="String" resultType="Integer">
+        select count(*) from grade where student_code = #{student_code}
+    </select>
+
+    <select id="getAvgGPAwithF" parameterType="String" resultType="Double">
+        select round(sum(grade * units)/sum(units), 3) from grade where student_code = #{student_code}
+    </select>
+
+    <select id="getAvgGPAwithoutF" parameterType="String" resultType="Double">
+        select round(sum(grade * units)/sum(units), 3) from grade where student_code = #{student_code} and grade != 1.5
+    </select>
+
+    <select id="selectYearAndSemesterByStudentCode" parameterType="String" resultType="com.spa.model.TermList">
+        select year,semester from grade where student_code = #{student_code} group by year, semester order by year desc, semester desc;
+    </select>
+
+    <select id="selectGradeByStudentCodeAndTerm" resultType="com.spa.model.Grade">
+        select * from grade where student_code = #{student_code} and year = #{year} and semester = #{semester}
+    </select>
+
+    <select id="getTermGPAByStudentCodeAndTerm" resultType="Double">
+        select round(sum(grade * units)/sum(units), 3) from grade where student_code = #{student_code} and year = #{year} and semester = #{semester}
+    </select>
+
+    <select id="checkisCS" resultType="Integer">
+        select count(*) from grade where student_code = #{student_code} and honors_count = #{honors_count}
+    </select>
+
+    <select id="getData" resultType="com.spa.model.Grade">
+        select * from grade
+    </select>
+
+    <select id="selectGradeByStudentCode" resultType="com.spa.model.Grade">
+        select * from grade where student_code = #{student_code}
+    </select>
+
+    <select id="checkisHonors" resultType="Integer">
+        select count(*) from grade where student_code = #{student_code} and course_code between 4001 and 4999
+    </select>
+</mapper>

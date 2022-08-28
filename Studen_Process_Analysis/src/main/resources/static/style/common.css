@@ -1,0 +1,126 @@
+body{
+	margin: 0;
+}
+
+footer{
+	text-align: center;
+	width: 100%;
+	border-top: #828181;
+	color: #828181;
+	margin-top: 20px;
+}
+
+.topbar a{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+.topbar{
+	width: 100%;
+	height: 64px;
+	line-height: 64px;
+	font-weight: 600;
+	font-size: 14px;
+	box-sizing: border-box;
+	padding-right: 100px;
+	padding-left: 100px;
+	text-align: right;
+	display: inline-block;
+	background-color: #015a9c;
+}
+
+#logoutBtn{
+	margin-left: 16px;
+}
+
+.menuBoard{
+	width: 70%;
+	margin: 30px auto;
+}
+
+.left-menu{
+	width: 28%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.inner{
+	width: 68%;
+	display: inline-block;
+	margin-left: 3%;
+}
+
+.uploadCsvForm{
+	margin-top: 20px;
+	line-height: 30px;
+}
+
+.normalBtn{
+	font-size: 16px;
+}
+
+#menu-home,
+#menu-course-management,
+#menu-student-management{
+	width: 100%;
+	height: 60px;
+	font-size: 18px;
+	line-height: 60px;
+	border-bottom: 1px dotted #828181;
+	box-sizing: border-box;
+	padding-left: 8px;
+}
+
+#menu-course-management-enrolled,
+#menu-course-management-result,
+#menu-student-management-academic,
+#menu-student-management-honorsoffers,
+#menu-student-management-riskstudent{
+	width: 100%;
+	height: 40px;
+	font-size: 14px;
+	line-height: 40px;
+	box-sizing: border-box;
+	padding-left: 24px;
+}
+
+.selected{
+	font-weight: 600;
+	color: #D30E0E;
+}
+
+.unselected{
+	font-weight: 200;
+	color: #000000;
+}
+
+.resultTable,
+#resultTable{
+	width: 100%;
+	margin-top: 20px;
+	border: 1px solid #828181;
+	border-collapse:collapse;
+}
+
+.resultTable th,
+#resultTable th{
+	background-color: #b0c4dd;
+	color: #000000;
+	text-align: left;
+}
+
+.resultForm,
+#resultForm{
+	text-align: left;
+	color: #000000;
+}
+
+.resultTable th,
+.resultTable td,
+#resultTable th,
+#resultTable td{
+	box-sizing: border-box;
+	border: 1px solid #828181;
+	padding-left: 4px;
+	padding-right: 4px;
+}

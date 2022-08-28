@@ -1,0 +1,42 @@
+<div th:fragment="detailPage">
+	<h3 th:text="${'Student code: ' + student_code}"></h3>
+	<h1 id="GPAWithF" th:text="${'Grade Point Average(GPA): ' + GPAWithF}"></h1>
+	<h1 id="GPAWithoutF" style="display: none;" th:text="${'Grade Point Average(GPA): ' + GPAWithoutF}"></h1>
+    <h3 th:text="${'Risk Level: ' + riskLevel}"></h3>
+    <h3 th:text="${'Honors Offers: ' + honors_status}"></h3>
+	<div style="float: right;">
+		<label for="WithOrWithoutF">Caluculate GPA with F</label>
+		<input type="checkbox" id="WithOrWithoutF" checked="true">
+	</div>
+	<table>
+		<thead>
+			<th>COURSE</th>
+			<th>UNITS</th>
+			<th>Grade</th>
+			<th></th>
+		</thead>
+		<tbody th:each="row : ${gradeList}">
+			<tr>
+				<td th:text="${ row.get('term').getYear() + ' Semester ' + row.get('term').getSemester()}" colspan="4" style="background-color: #efefef;font-weight: 600;"></td>
+			</tr>
+			<tr th:each="grade : ${row.get('grade').get('grade')}">
+				<td th:text="${grade.getCourseName()}"></td>
+				<td th:text="${grade.getUnits()}"></td>
+				<td th:switch="${grade.getGrade()}">
+					<div th:case="7" th:text="HD"></div>
+					<div th:case="6" th:text="D"></div>
+					<div th:case="5" th:text="C"></div>
+					<div th:case="4" th:text="P"></div>
+					<div th:case="*" th:text="${grade.getGrade() == -1 ? ' ' : 'F'}"></div>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td th:text="${'GPA: ' + row.get('grade').get('gpa')}"></td>
+			</tr>
+		</tbody>
+	</table>
+</div> 

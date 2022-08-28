@@ -1,0 +1,26 @@
+<div th:fragment="homePage">
+	<h1>Welcome to Student Progress Analysis System</h1>
+	<div th:if="${admin}">
+		<div class="uploadCsvForm">
+			<label for="ifinstead">Replace original data?</label>
+			<input type="checkbox" id="ifinstead"/><br>
+			<script>
+				function getFilename(){
+					var filename=document.getElementById("csvFileChoose").value;
+					if(filename == undefined||filename==""){
+						alert('no file uploaded');
+					}
+				else{
+					var fn=filename.substring(filename.lastIndexOf("\\")+1);
+					document.getElementById("filename").innerHTML=fn;
+					}
+				}
+			</script>
+			<span id="filename">click button to choose file</span>
+			<input type="file" id="csvFileChoose" accept=".csv" style="display: none;" onchange="getFilename()"/>
+
+			<input type="button" class="normalBtn" value="Choose csv file" onclick="$('#csvFileChoose').click()"/><br>
+			<button class="normalBtn" id="uploadCsvButton">Upload</button>
+		</div>
+	</div>
+</div>

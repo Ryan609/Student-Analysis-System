@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang='en' xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Student Progress Analysis</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/static/style/common.css}"/>
+		<link th:if="${subpage == null}" rel="stylesheet" type="text/css" th:href="@{'/static/style/'+(${page})+'.css'}"/>
+		<link th:if="${subpage != null}" rel="stylesheet" type="text/css" th:href="@{'/static/style/'+(${page})+'-'+(${subpage})+'.css'}"/>
+		<link rel="icon" th:href="@{/static/style/favicon.ico}"/>
+		<script th:src="@{/static/script/jquery-1.11.0.min.js}" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div th:insert="common :: topbar"></div>
+		<div th:insert="common :: menuBoard"></div>
+		<div th:insert="common :: bottombar"></div>
+		<script th:if="${logined}" type="text/javascript">
+			$(location).attr('href', '/login');
+		</script>
+		<script th:src="@{/static/script/common.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:if="${subpage == null}" th:src="@{'/static/script/'+(${page})+'.js'}" type="text/javascript" charset="utf-8"></script>
+		<script th:if="${subpage != null}" th:src="@{'/static/script/'+(${page})+'-'+(${subpage})+'.js'}" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

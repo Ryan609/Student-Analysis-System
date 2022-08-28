@@ -1,0 +1,59 @@
+<div th:fragment="coursePage">
+	<div th:switch="${subpage}">
+		<div th:case="enrolled" th:insert="course :: enrolledPage"></div>
+		<div th:case="result" th:insert="course :: resultPage"></div>
+	</div>
+</div>
+
+<div th:fragment="enrolledPage">
+	<h1>Enrolled Information</h1>
+	<div id="searchBox">
+		<div id="keywordTips">
+			<ul id="keywordSearchResult">
+				
+			</ul>
+		</div>
+		<input type="text" id="searchInput" placeholder="Input Course code or Course name..." value=""/>
+		<select id="timeSelect"></select><br>
+		<h4 id="course_info" style="display: none;"><span id="enrolledNum"></span> | <span id="course_units"></span></h4>
+		<table id="resultTable" style="display: none;">
+			<thead id="resultTableHead">
+				<tr>
+					<th>Student code</th>
+					<th>Course</th>
+					<th>Terms</th>
+					<th>Enrolled</th>
+				</tr>
+			</thead>
+			<tbody id="resultTableBody">
+				
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div th:fragment="resultPage">
+	<h1>Course Results</h1>
+	<div id="searchBox">
+		<div id="keywordTips">
+			<ul id="keywordSearchResult">
+				
+			</ul>
+		</div>
+		<input type="text" id="searchInput" placeholder="Input Course code or Course name..." value=""/>
+		<select id="timeSelect"></select><br>
+		<h4 id="course_info" style="display: none;"><span id="avggpa"></span> | <span id="hdcount"></span> | <span id="dcount"></span> | <span id="ccount"></span> | <span id="pcount"></span> | <span id="fcount"></span></h4>
+		<table id="resultTable" style="display: none;">
+			<thead id="resultTableHead">
+				<tr>
+					<th>Student code</th>
+					<th>Course</th>
+					<th>Grade</th>
+				</tr>
+			</thead>
+			<tbody id="resultTableBody">
+				
+			</tbody>
+		</table>
+	</div>
+</div>

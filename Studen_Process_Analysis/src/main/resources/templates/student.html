@@ -1,0 +1,95 @@
+<div th:fragment="studentPage">
+	<div th:switch="${subpage}">
+		<div th:case="academic" th:insert="student :: academicPage"></div>
+		<div th:case="honorsoffers" th:insert="student :: honorsOffersPage"></div>
+		<div th:case="riskstudent" th:insert="student :: riskStudentPage"></div>
+	</div>
+</div>
+
+<div th:fragment="academicPage">
+	<h1>Student Academic</h1>
+	<input type="text" id="studentCodeInput" placeholder="Student Code..."/>
+	<button id="searchBtn">Search</button>
+	<span id="searchResult"></span>
+	<a id="checkDetailBtn" target="_blank" rel="noopener noreferrer"><button>Detail</button></a>
+</div>
+
+<div th:fragment="honorsOffersPage">
+	<h2>Honors Offers for Bachelor of Computer Science</h2>
+		<table id="resultTable" style="display: none;">
+			<thead id="resultTableHead">
+			<tr>
+				<th>Student code</th>
+				<th>Major</th>
+				<th>Study period</th>
+				<!--th>GPA</th-->
+				<th>Detail</th>
+			</tr>
+			</thead>
+			<tbody id="resultTableBody">
+			</tbody>
+		</table>
+</div>
+
+<div th:fragment="riskStudentPage">
+	<h1>Student Information</h1>
+	<div id="searchBox">
+		<button id="searchBtnAll">All</button>
+		<button id="searchBtnRisk1">Risk1</button>
+		<button id="searchBtnRisk2">Risk2</button>
+		<button id="searchBtnUnsatisfactory">Unsatisfactory</button>
+		<table id="resultTable" style="display: none;">
+			<thead id="resultTableHead">
+			<tr>
+				<th>No</th>
+				<th>Student code</th>
+				<th>Risk level</th>
+				<th>Detail</th>
+			</tr>
+			</thead>
+			<tbody id="resultTableBody">
+
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div th:fragment="detailPage">
+	<h1 th:text="${'Name : ' + student.getname()}"></h1>
+	<button id="detail-back-button">Back</button>
+	<div th:each="year : ${gradeList.keySet()}">
+		<h4 th:text="${year}"></h4>
+		<table class="resultTable">
+			<thead>
+				<th>Subject/Cat Nbr</th>
+				<th>Course</th>
+				<th>Units</th>
+				<th>Mark</th>
+				<th>Grade</th>
+				<th th:text="${'GPA('+year+')'}"></th>
+			</thead>
+			<tbody th:each="semester : ${gradeList.get(year).keySet()}">
+				<tr>
+					<td th:text="${'- Semester ' + semester + ' -'}" colspan="6" style="font-weight: 600;"></td>
+				</tr>
+				<tr th:each="grade : ${gradeList.get(year).get(semester)}">
+					<td th:text="${grade.getcourse().getid()}"></td>
+					<td th:text="${grade.getcourse().getname()}"></td>
+					<td th:text="${grade.getcourse().getunits()}"></td>
+					<td th:text="${grade.getmark() == -1 ? ' ' : grade.getmark()}"></td>
+					<td th:switch="${grade.getgrade()}">
+						<div th:case="7" th:text="HD"></div>
+						<div th:case="6" th:text="D"></div>
+						<div th:case="5" th:text="C"></div>
+						<div th:case="4" th:text="P"></div>
+						<div th:case="*" th:text="${grade.getmark() == -1 ? ' ' : 'F'}"></div>
+					</td>
+				</tr>
+				<tr><td th:text="${gpaList.get(year)}" colspan="6" style="text-align: right;"></td></tr>
+			</tbody>
+		</table>
+	</div>
+	<script th:if="${ifid}" type="text/javascript">
+		$(location).attr("href","/management");
+	</script>
+</div> 
